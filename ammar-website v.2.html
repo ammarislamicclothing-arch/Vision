@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AMMAR — Islamic Clothing</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cinzel:wght@400;500;600;700&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --gold: #C9A84C; --gold-light: #E2C47A; --gold-pale: #F0DFA8; --gold-dark: #8B6820;
+  --cream: #F5F0E8; --ink: #14110E; --ink-mid: #2E2820; --ink-soft: #5A5048;
+  --warm: #9A8C7E; --ivory: #FAF7F2;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--ink); color: var(--cream); font-family: 'Jost', sans-serif; font-weight: 300; overflow-x: hidden; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 48px;
+  background: linear-gradient(to bottom, rgba(20,17,14,0.97) 0%, transparent 100%);
+}
+.nav-logo { font-family:'Cinzel',serif; font-size:18px; font-weight:700; letter-spacing:6px; color:var(--gold); text-decoration:none; }
+.nav-links { display:flex; gap:36px; list-style:none; }
+.nav-links a { font-family:'Jost',sans-serif; font-size:11px; letter-spacing:3px; text-transform:uppercase; color:rgba(245,240,232,0.55); text-decoration:none; transition:color 0.3s; }
+.nav-links a:hover { color:var(--gold); }
+@media(max-width:640px){ nav{padding:18px 24px;} .nav-links{display:none;} }
+
+/* HERO */
+.hero {
+  min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  position:relative; overflow:hidden; padding:120px 24px 80px; text-align:center;
+}
+.hero::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background-image:
+    radial-gradient(ellipse 80% 55% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+    repeating-linear-gradient(45deg, rgba(201,168,76,0.018) 0px, rgba(201,168,76,0.018) 1px, transparent 1px, transparent 55px),
+    repeating-linear-gradient(-45deg, rgba(201,168,76,0.018) 0px, rgba(201,168,76,0.018) 1px, transparent 1px, transparent 55px);
+}
+.hero-ornament { margin-bottom:32px; animation:fadeDown 1.2s ease both; }
+.brand-block { animation:fadeDown 1.2s 0.15s ease both; }
+.brand-name {
+  font-family:'Cinzel',serif; font-size:clamp(68px,15vw,148px); font-weight:700;
+  letter-spacing:0.2em; color:var(--cream); line-height:0.88; position:relative; display:inline-block;
+}
+.brand-name::after {
+  content:''; position:absolute; bottom:-10px; left:8%; right:8%; height:1px;
+  background:linear-gradient(to right, transparent, var(--gold), transparent);
+  animation:shimmer 3s 1.5s ease-in-out infinite;
+}
+.brand-sub {
+  font-family:'Cormorant Garamond',serif; font-size:clamp(13px,2vw,18px); font-weight:300;
+  letter-spacing:9px; text-transform:uppercase; color:var(--gold); margin-top:20px; display:block;
+}
+.hero-divider { display:flex; align-items:center; gap:18px; margin:44px auto; width:260px; animation:fadeUp 1.2s 0.4s ease both; }
+.hdl { flex:1; height:1px; background:linear-gradient(to right,transparent,rgba(201,168,76,0.5)); }
+.hdl.r { background:linear-gradient(to left,transparent,rgba(201,168,76,0.5)); }
+.hdd { width:7px; height:7px; border:1px solid var(--gold); transform:rotate(45deg); flex-shrink:0; }
+.hero-tagline { font-family:'Cormorant Garamond',serif; font-size:clamp(16px,2.5vw,22px); font-weight:300; font-style:italic; color:rgba(245,240,232,0.6); letter-spacing:0.02em; animation:fadeUp 1.2s 0.5s ease both; }
+.hero-cta {
+  margin-top:48px; display:inline-block; font-family:'Cinzel',serif; font-size:10px; letter-spacing:5px;
+  text-transform:uppercase; color:var(--gold); border:1px solid rgba(201,168,76,0.45); padding:15px 38px;
+  text-decoration:none; transition:all 0.35s; animation:fadeUp 1.2s 0.7s ease both; position:relative; overflow:hidden;
+}
+.hero-cta::before { content:''; position:absolute; inset:0; background:var(--gold); transform:scaleX(0); transform-origin:left; transition:transform 0.4s ease; z-index:-1; }
+.hero-cta:hover { color:var(--ink); border-color:var(--gold); }
+.hero-cta:hover::before { transform:scaleX(1); }
+.scroll-hint { position:absolute; bottom:36px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; animation:fadeUp 1.5s 1s ease both; }
+.scroll-hint span { font-family:'Cinzel',serif; font-size:8px; letter-spacing:4px; color:rgba(201,168,76,0.45); text-transform:uppercase; }
+.scroll-arrow { width:1px; height:36px; background:linear-gradient(to bottom,var(--gold),transparent); animation:scrollPulse 2s 1.5s ease-in-out infinite; }
+
+/* COLLECTION */
+#collection { padding:100px 40px 80px; max-width:1280px; margin:0 auto; }
+.section-header { text-align:center; margin-bottom:64px; }
+.section-eyebrow { font-family:'Cinzel',serif; font-size:9px; letter-spacing:6px; color:var(--gold); text-transform:uppercase; display:block; margin-bottom:16px; }
+.section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(28px,5vw,48px); font-weight:300; color:var(--cream); letter-spacing:0.02em; }
+.section-title em { font-style:italic; color:var(--gold-light); }
+
+/* GRID */
+.thobe-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:3px; }
+@media(max-width:900px){ .thobe-grid{grid-template-columns:repeat(2,1fr);} }
+@media(max-width:480px){ .thobe-grid{grid-template-columns:1fr 1fr; gap:2px;} }
+
+.thobe-card {
+  position:relative; background:#1C1814; cursor:pointer; overflow:hidden;
+  border:1px solid rgba(201,168,76,0.08); transition:border-color 0.3s;
+}
+.thobe-card:hover { border-color:rgba(201,168,76,0.4); }
+.thobe-card:hover .thobe-svg-wrap { transform:scale(1.02) translateY(-4px); }
+.thobe-card:hover .cho { opacity:1; }
+.thobe-card:hover .view-btn { opacity:1; transform:translateX(-50%) translateY(0); }
+.thobe-card:hover .card-tag { background:var(--gold); color:var(--ink); }
+.thobe-svg-wrap { padding:32px 18px 10px; transition:transform 0.5s cubic-bezier(0.22,1,0.36,1); display:block; }
+.cho { position:absolute; inset:0; background:linear-gradient(to top,rgba(201,168,76,0.09) 0%,transparent 55%); opacity:0; transition:opacity 0.4s; pointer-events:none; }
+.card-tag { position:absolute; top:12px; right:12px; font-family:'Cinzel',serif; font-size:7px; letter-spacing:2.5px; text-transform:uppercase; padding:5px 10px; background:rgba(201,168,76,0.15); color:var(--gold); border:1px solid rgba(201,168,76,0.3); transition:all 0.3s; }
+.view-btn { position:absolute; bottom:70px; left:50%; transform:translateX(-50%) translateY(10px); font-family:'Cinzel',serif; font-size:8px; letter-spacing:3px; color:var(--gold); border:1px solid var(--gold); padding:8px 20px; opacity:0; transition:all 0.35s; white-space:nowrap; background:rgba(20,17,14,0.85); }
+.card-info { padding:14px 18px 20px; border-top:1px solid rgba(201,168,76,0.1); }
+.card-num { font-family:'Cinzel',serif; font-size:8px; letter-spacing:3px; color:rgba(201,168,76,0.45); display:block; margin-bottom:4px; }
+.card-title { font-family:'Cormorant Garamond',serif; font-size:18px; font-weight:400; color:var(--cream); line-height:1.2; }
+.card-hint { font-size:10px; font-weight:300; color:var(--warm); margin-top:3px; letter-spacing:0.5px; }
+
+/* FEATURE BAR */
+.feature-bar { max-width:1280px; margin:3px auto 0; padding:0 40px; display:grid; grid-template-columns:repeat(5,1fr); background:rgba(201,168,76,0.05); border:1px solid rgba(201,168,76,0.1); border-top:none; }
+@media(max-width:700px){ .feature-bar{grid-template-columns:repeat(2,1fr); padding:0 16px;} }
+.feat-item { padding:20px 22px; border-right:1px solid rgba(201,168,76,0.07); display:flex; flex-direction:column; gap:4px; }
+.feat-item:last-child { border-right:none; }
+.feat-k { font-family:'Cinzel',serif; font-size:7.5px; letter-spacing:3px; color:var(--gold); text-transform:uppercase; }
+.feat-v { font-family:'Cormorant Garamond',serif; font-size:15px; font-weight:300; color:rgba(245,240,232,0.8); }
+
+/* MODAL */
+.modal-backdrop {
+  position:fixed; inset:0; background:rgba(8,6,4,0.9); z-index:200;
+  display:flex; align-items:center; justify-content:center; padding:24px;
+  opacity:0; pointer-events:none; transition:opacity 0.4s ease; backdrop-filter:blur(10px);
+}
+.modal-backdrop.open { opacity:1; pointer-events:all; }
+.modal-backdrop.open .modal-box { transform:translateY(0) scale(1); opacity:1; }
+.modal-box {
+  background:#1C1814; border:1px solid rgba(201,168,76,0.2); max-width:860px; width:100%;
+  display:grid; grid-template-columns:1fr 1fr; position:relative;
+  transform:translateY(28px) scale(0.97); opacity:0;
+  transition:all 0.45s cubic-bezier(0.22,1,0.36,1); max-height:90vh; overflow:hidden;
+}
+@media(max-width:660px){ .modal-box{grid-template-columns:1fr; max-height:92vh; overflow-y:auto;} }
+.modal-close {
+  position:absolute; top:14px; right:14px; width:34px; height:34px; background:none;
+  border:1px solid rgba(201,168,76,0.3); color:var(--gold); font-size:16px; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; transition:all 0.2s; z-index:10;
+  font-family:'Jost',sans-serif; font-weight:200; line-height:1;
+}
+.modal-close:hover { background:var(--gold); color:var(--ink); }
+.modal-visual {
+  display:flex; align-items:center; justify-content:center; padding:52px 28px;
+  position:relative; overflow:hidden; min-height:460px;
+}
+.modal-visual::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at center, rgba(201,168,76,0.07) 0%, transparent 68%); pointer-events:none; }
+.modal-visual svg { width:100%; max-width:195px; filter:drop-shadow(0 24px 48px rgba(0,0,0,0.5)); }
+.modal-content { padding:48px 38px 40px; display:flex; flex-direction:column; justify-content:space-between; overflow-y:auto; }
+.modal-eyebrow { font-family:'Cinzel',serif; font-size:8px; letter-spacing:4px; color:var(--gold); text-transform:uppercase; margin-bottom:10px; }
+.modal-title { font-family:'Cormorant Garamond',serif; font-size:38px; font-weight:300; color:var(--cream); line-height:1.05; margin-bottom:6px; }
+.modal-subtitle { font-family:'Cormorant Garamond',serif; font-size:17px; font-style:italic; color:var(--gold-light); margin-bottom:24px; }
+.modal-divider { width:40px; height:1px; background:var(--gold); margin-bottom:24px; }
+.modal-desc { font-family:'Cormorant Garamond',serif; font-size:17px; font-weight:300; line-height:1.85; color:rgba(245,240,232,0.78); font-style:italic; margin-bottom:28px; }
+.modal-specs { display:flex; flex-direction:column; margin-bottom:32px; }
+.spec-row { display:grid; grid-template-columns:90px 1fr; padding:10px 0; border-bottom:1px solid rgba(201,168,76,0.08); }
+.spec-row:first-child { border-top:1px solid rgba(201,168,76,0.08); }
+.spec-k { font-family:'Cinzel',serif; font-size:8px; letter-spacing:2.5px; color:rgba(201,168,76,0.55); text-transform:uppercase; padding-top:1px; }
+.spec-v { font-family:'Cormorant Garamond',serif; font-size:15px; font-weight:400; color:var(--cream); }
+.modal-cta { font-family:'Cinzel',serif; font-size:9px; letter-spacing:4px; text-transform:uppercase; color:var(--ink); background:var(--gold); padding:15px 28px; border:none; cursor:pointer; transition:background 0.3s; width:100%; }
+.modal-cta:hover { background:var(--gold-light); }
+
+/* FOOTER */
+footer { border-top:1px solid rgba(201,168,76,0.1); padding:48px 40px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; max-width:1280px; margin:60px auto 0; }
+.footer-brand { font-family:'Cinzel',serif; font-size:24px; font-weight:700; letter-spacing:6px; color:var(--gold); }
+.footer-brand span { display:block; font-family:'Cormorant Garamond',serif; font-size:13px; letter-spacing:5px; color:var(--warm); font-weight:300; margin-top:4px; }
+.footer-copy { font-size:11px; letter-spacing:2px; color:rgba(245,240,232,0.22); text-transform:uppercase; }
+
+/* KEYFRAMES */
+@keyframes fadeDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeUp   { from{opacity:0;transform:translateY(20px)}  to{opacity:1;transform:translateY(0)} }
+@keyframes shimmer  { 0%,100%{opacity:0.4} 50%{opacity:1} }
+@keyframes scrollPulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">AMMAR</a>
+  <ul class="nav-links">
+    <li><a href="#collection">Collection</a></li>
+    <li><a href="#">Lookbook</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-ornament">
+    <svg width="190" height="46" viewBox="0 0 190 46" fill="none">
+      <line x1="0" y1="23" x2="62" y2="23" stroke="#C9A84C" stroke-width="0.5" opacity="0.45"/>
+      <path d="M68 23 L74 15 L80 23 L74 31 Z" fill="none" stroke="#C9A84C" stroke-width="0.7" opacity="0.65"/>
+      <path d="M82 23 L88 13 L94 23 L88 33 Z" fill="#C9A84C" opacity="0.55"/>
+      <circle cx="95" cy="23" r="3.5" fill="#14110E"/>
+      <path d="M110 23 L116 15 L122 23 L116 31 Z" fill="none" stroke="#C9A84C" stroke-width="0.7" opacity="0.65"/>
+      <line x1="128" y1="23" x2="190" y2="23" stroke="#C9A84C" stroke-width="0.5" opacity="0.45"/>
+      <circle cx="31" cy="23" r="1.5" fill="#C9A84C" opacity="0.3"/>
+      <circle cx="159" cy="23" r="1.5" fill="#C9A84C" opacity="0.3"/>
+    </svg>
+  </div>
+  <div class="brand-block">
+    <h1 class="brand-name">AMMAR</h1>
+    <span class="brand-sub">Islamic Clothing</span>
+  </div>
+  <div class="hero-divider">
+    <span class="hdl"></span><span class="hdd"></span><span class="hdl r"></span>
+  </div>
+  <p class="hero-tagline">Where faith meets refined craftsmanship</p>
+  <a href="#collection" class="hero-cta">Explore the Collection</a>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- COLLECTION -->
+<section id="collection">
+  <div class="section-header">
+    <span class="section-eyebrow">Royal Minimalist · 2025</span>
+    <h2 class="section-title">The Thobe <em>Collection</em></h2>
+  </div>
+
+  <div class="thobe-grid">
+    <!-- Card 1 -->
+    <div class="thobe-card" onclick="openModal(0)" role="button" tabindex="0">
+      <span class="card-tag">Signature</span>
+      <div class="thobe-svg-wrap">
+        <svg viewBox="0 0 200 360" fill="none"><path d="M68 44C52 46 24 58 12 88L6 155C4 173 8 191 14 206L24 295C28 324 30 343 32 357H168C170 343 172 324 176 295L186 206C192 191 196 173 194 155L188 88C176 58 148 46 132 44Z" fill="#F7F3EC" stroke="#DDD6C8" stroke-width=".8"/><rect x="82" y="20" width="36" height="28" rx="3" fill="#EDEAE0" stroke="#B8922A" stroke-width=".7"/><line x1="82" y1="30" x2="118" y2="30" stroke="#B8922A" stroke-width=".4" opacity=".7"/><line x1="82" y1="38" x2="118" y2="38" stroke="#B8922A" stroke-width=".3" opacity=".5"/><rect x="94" y="48" width="12" height="112" fill="none" stroke="#D4C4A0" stroke-width=".5"/><path d="M97 55Q100 62 103 55Q100 72 97 82Q100 89 103 82Q100 99 97 109Q100 116 103 109Q100 126 97 136Q100 143 103 136" stroke="#B8922A" stroke-width=".6" fill="none" opacity=".6"/><path d="M58 80Q56 155 57 228Q58 295 60 353" stroke="#C9B070" stroke-width=".5" fill="none" opacity=".4"/><path d="M142 80Q144 155 143 228Q142 295 140 353" stroke="#C9B070" stroke-width=".5" fill="none" opacity=".4"/><rect x="26" y="168" width="148" height="8" rx="2" fill="none" stroke="#C9A84C" stroke-width=".7" opacity=".55"/><rect x="93" y="167" width="14" height="10" rx="1.5" fill="none" stroke="#C9A84C" stroke-width=".8" opacity=".7"/><circle cx="100" cy="52" r="3.5" fill="#C9A84C"/><circle cx="100" cy="52" r="2" fill="none" stroke="#F0D98A" stroke-width=".5"/><circle cx="100" cy="68" r="3.5" fill="#C9A84C"/><circle cx="100" cy="68" r="2" fill="none" stroke="#F0D98A" stroke-width=".5"/><circle cx="100" cy="84" r="3.5" fill="#C9A84C"/><circle cx="100" cy="84" r="2" fill="none" stroke="#F0D98A" stroke-width=".5"/><circle cx="100" cy="100" r="3.5" fill="#C9A84C"/><circle cx="100" cy="100" r="2" fill="none" stroke="#F0D98A" stroke-width=".5"/><circle cx="100" cy="116" r="3.5" fill="#C9A84C"/><circle cx="100" cy="116" r="2" fill="none" stroke="#F0D98A" stroke-width=".5"/><path d="M68 44Q78 52 85 60" stroke="#D4C4A0" stroke-width="1.2" fill="none"/><path d="M132 44Q122 52 115 60" stroke="#D4C4A0" stroke-width="1.2" fill="none"/><line x1="32" y1="353" x2="168" y2="353" stroke="#C9A84C" stroke-width=".7" opacity=".5"/></svg>
+      </div>
+      <div class="card-info">
+        <span class="card-num">01</span>
+        <div class="card-title">The Classic</div>
+        <div class="card-hint">Ivory · Belted</div>
+      </div>
+      <div class="cho"></div>
+      <div class="view-btn">View Details</div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="thobe-card" onclick="openModal(1)" role="button" tabindex="0">
+      <span class="card-tag">Bold</span>
+      <div class="thobe-svg-wrap">
+        <svg viewBox="0 0 200 360" fill="none"><path d="M68 44C52 46 24 58 12 88L6 155C4 173 8 191 14 206L24 295C28 324 30 343 32 357H168C170 343 172 324 176 295L186 206C192 191 196 173 194 155L188 88C176 58 148 46 132 44Z" fill="#1A2340" stroke="#2A3555" stroke-width=".8"/><rect x="82" y="20" width="36" height="28" rx="3" fill="#151C33" stroke="#B8922A" stroke-width=".8"/><line x1="82" y1="30" x2="118" y2="30" stroke="#B8922A" stroke-width=".5" opacity=".8"/><rect x="93" y="48" width="14" height="132" fill="#0F1626" stroke="#B8922A" stroke-width=".6"/><path d="M97 56L100 51L103 56V63L100 68L97 63Z" fill="#C9A84C" opacity=".35" stroke="#C9A84C" stroke-width=".5"/><path d="M97 70L100 65L103 70V77L100 82L97 77Z" fill="#C9A84C" opacity=".35" stroke="#C9A84C" stroke-width=".5"/><path d="M97 84L100 79L103 84V91L100 96L97 91Z" fill="#C9A84C" opacity=".35" stroke="#C9A84C" stroke-width=".5"/><path d="M97 98L100 93L103 98V105L100 110L97 105Z" fill="#C9A84C" opacity=".35" stroke="#C9A84C" stroke-width=".5"/><path d="M97 112L100 107L103 112V119L100 124L97 119Z" fill="#C9A84C" opacity=".35" stroke="#C9A84C" stroke-width=".5"/><path d="M97 126L100 121L103 126V133L100 138L97 133Z" fill="#C9A84C" opacity=".35" stroke="#C9A84C" stroke-width=".5"/><path d="M68 44L93 48" stroke="#B8922A" stroke-width="1.3"/><path d="M132 44L107 48" stroke="#B8922A" stroke-width="1.3"/><path d="M56 78Q54 155 55 228Q56 295 58 353" stroke="#B8922A" stroke-width=".5" fill="none" opacity=".28"/><path d="M144 78Q146 155 145 228Q144 295 142 353" stroke="#B8922A" stroke-width=".5" fill="none" opacity=".28"/><circle cx="100" cy="52" r="4" fill="#C9A84C"/><circle cx="100" cy="52" r="2.4" fill="none" stroke="#F0D98A" stroke-width=".6"/><circle cx="100" cy="52" r="1" fill="#F0D98A"/><circle cx="100" cy="70" r="4" fill="#C9A84C"/><circle cx="100" cy="70" r="2.4" fill="none" stroke="#F0D98A" stroke-width=".6"/><circle cx="100" cy="88" r="4" fill="#C9A84C"/><circle cx="100" cy="88" r="2.4" fill="none" stroke="#F0D98A" stroke-width=".6"/><circle cx="100" cy="106" r="4" fill="#C9A84C"/><circle cx="100" cy="106" r="2.4" fill="none" stroke="#F0D98A" stroke-width=".6"/><circle cx="100" cy="124" r="4" fill="#C9A84C"/><circle cx="100" cy="124" r="2.4" fill="none" stroke="#F0D98A" stroke-width=".6"/><path d="M12 196Q10 210 12 222" stroke="#B8922A" stroke-width="1.3" fill="none"/><path d="M188 196Q190 210 188 222" stroke="#B8922A" stroke-width="1.3" fill="none"/><line x1="32" y1="353" x2="168" y2="353" stroke="#B8922A" stroke-width=".8" opacity=".6"/></svg>
+      </div>
+      <div class="card-info">
+        <span class="card-num">02</span>
+        <div class="card-title">Midnight Sovereign</div>
+        <div class="card-hint">Navy · Gold Embroidery</div>
+      </div>
+      <div class="cho"></div>
+      <div class="view-btn">View Details</div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="thobe-card" onclick="openModal(2)" role="button" tabindex="0">
+      <span class="card-tag">Modern</span>
+      <div class="thobe-svg-wrap">
+        <svg viewBox="0 0 200 360" fill="none"><path d="M68 44C52 46 24 58 12 88L6 155C4 173 8 191 14 206L24 295C28 324 30 343 32 357H168C170 343 172 324 176 295L186 206C192 191 196 173 194 155L188 88C176 58 148 46 132 44Z" fill="#9E8E7A" stroke="#8A7A68" stroke-width=".8"/><rect x="82" y="20" width="36" height="28" rx="3" fill="#8A7A68" stroke="#5A4E40" stroke-width=".8"/><line x1="82" y1="30" x2="118" y2="30" stroke="#5A4E40" stroke-width=".5" opacity=".7"/><path d="M100 48L68 178V357H100Z" fill="#8A7A66" opacity=".4"/><path d="M100 48L68 178" stroke="#5A4E38" stroke-width="1.6" fill="none"/><line x1="68" y1="178" x2="68" y2="357" stroke="#5A4E38" stroke-width=".8" opacity=".5"/><path d="M100 48Q86 100 74 178Q70 240 68 302Q67 332 68 353" stroke="#C9A84C" stroke-width=".6" fill="none" opacity=".45"/><path d="M142 80Q144 155 143 228Q142 295 140 353" stroke="#C9A84C" stroke-width=".4" fill="none" opacity=".28"/><circle cx="97" cy="62" r="4" fill="#4A3E30"/><circle cx="97" cy="62" r="2.2" fill="none" stroke="#9A8060" stroke-width=".5"/><circle cx="93" cy="82" r="4" fill="#4A3E30"/><circle cx="93" cy="82" r="2.2" fill="none" stroke="#9A8060" stroke-width=".5"/><circle cx="89" cy="102" r="4" fill="#4A3E30"/><circle cx="89" cy="102" r="2.2" fill="none" stroke="#9A8060" stroke-width=".5"/><circle cx="85" cy="122" r="4" fill="#4A3E30"/><circle cx="85" cy="122" r="2.2" fill="none" stroke="#9A8060" stroke-width=".5"/><circle cx="81" cy="142" r="4" fill="#4A3E30"/><circle cx="81" cy="142" r="2.2" fill="none" stroke="#9A8060" stroke-width=".5"/><line x1="32" y1="353" x2="168" y2="353" stroke="#6E5E4A" stroke-width=".8" opacity=".6"/></svg>
+      </div>
+      <div class="card-info">
+        <span class="card-num">03</span>
+        <div class="card-title">The Diagonal</div>
+        <div class="card-hint">Taupe · Asymmetric</div>
+      </div>
+      <div class="cho"></div>
+      <div class="view-btn">View Details</div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="thobe-card" onclick="openModal(3)" role="button" tabindex="0">
+      <span class="card-tag">Pure</span>
+      <div class="thobe-svg-wrap">
+        <svg viewBox="0 0 200 360" fill="none"><path d="M68 44C52 46 24 58 12 88L6 155C4 173 8 191 14 206L24 295C28 324 30 343 32 357H168C170 343 172 324 176 295L186 206C192 191 196 173 194 155L188 88C176 58 148 46 132 44Z" fill="#F9F6F0" stroke="#E4DDD0" stroke-width=".8"/><rect x="82" y="20" width="36" height="28" rx="3" fill="#F0ECE2" stroke="#C9A84C" stroke-width=".7"/><line x1="82" y1="30" x2="118" y2="30" stroke="#C9A84C" stroke-width=".4" opacity=".6"/><path d="M70 48H130V120Q100 131 70 120Z" fill="none" stroke="#D4C4A0" stroke-width=".6"/><path d="M72 56Q100 51 128 56" stroke="#C9A84C" stroke-width=".5" fill="none" opacity=".55"/><path d="M72 66Q100 61 128 66" stroke="#C9A84C" stroke-width=".45" fill="none" opacity=".45"/><path d="M74 78Q100 73 126 78" stroke="#C9A84C" stroke-width=".4" fill="none" opacity=".38"/><path d="M76 90Q100 85 124 90" stroke="#C9A84C" stroke-width=".35" fill="none" opacity=".3"/><path d="M78 102Q100 97 122 102" stroke="#C9A84C" stroke-width=".3" fill="none" opacity=".25"/><path d="M58 80Q56 155 57 228Q58 295 60 353" stroke="#C9A84C" stroke-width=".6" fill="none" opacity=".42"/><path d="M142 80Q144 155 143 228Q142 295 140 353" stroke="#C9A84C" stroke-width=".6" fill="none" opacity=".42"/><circle cx="100" cy="55" r="4.5" fill="#F0ECE2" stroke="#C9A84C" stroke-width=".9"/><circle cx="100" cy="55" r="2.4" fill="none" stroke="#D4BA70" stroke-width=".6"/><circle cx="100" cy="75" r="4.5" fill="#F0ECE2" stroke="#C9A84C" stroke-width=".9"/><circle cx="100" cy="75" r="2.4" fill="none" stroke="#D4BA70" stroke-width=".6"/><circle cx="100" cy="95" r="4.5" fill="#F0ECE2" stroke="#C9A84C" stroke-width=".9"/><circle cx="100" cy="95" r="2.4" fill="none" stroke="#D4BA70" stroke-width=".6"/><circle cx="100" cy="115" r="4.5" fill="#F0ECE2" stroke="#C9A84C" stroke-width=".9"/><circle cx="100" cy="115" r="2.4" fill="none" stroke="#D4BA70" stroke-width=".6"/><line x1="32" y1="350" x2="168" y2="350" stroke="#C9A84C" stroke-width=".8" opacity=".55"/><line x1="34" y1="354" x2="166" y2="354" stroke="#C9A84C" stroke-width=".4" opacity=".32"/></svg>
+      </div>
+      <div class="card-info">
+        <span class="card-num">04</span>
+        <div class="card-title">The Ceremonial</div>
+        <div class="card-hint">Pearl · Chest Embroidery</div>
+      </div>
+      <div class="cho"></div>
+      <div class="view-btn">View Details</div>
+    </div>
+  </div>
+
+  <!-- Feature bar -->
+  <div class="feature-bar">
+    <div class="feat-item"><span class="feat-k">Collar</span><span class="feat-v">Sherwani Band</span></div>
+    <div class="feat-item"><span class="feat-k">Length</span><span class="feat-v">Full Thobe</span></div>
+    <div class="feat-item"><span class="feat-k">Buttons</span><span class="feat-v">Metal or Fabric</span></div>
+    <div class="feat-item"><span class="feat-k">Fabric</span><span class="feat-v">Cotton–Linen Blend</span></div>
+    <div class="feat-item"><span class="feat-k">Detail</span><span class="feat-v">Royal Stitching</span></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">AMMAR<span>Islamic Clothing</span></div>
+  <div class="footer-copy">© 2025 AMMAR · All Rights Reserved</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modal" onclick="handleBackdropClick(event)">
+  <div class="modal-box" id="modalBox">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-visual" id="modalVisual"></div>
+    <div class="modal-content">
+      <div>
+        <div class="modal-eyebrow" id="modalEyebrow"></div>
+        <h2 class="modal-title" id="modalTitle"></h2>
+        <div class="modal-subtitle" id="modalSubtitle"></div>
+        <div class="modal-divider"></div>
+        <p class="modal-desc" id="modalDesc"></p>
+        <div class="modal-specs" id="modalSpecs"></div>
+      </div>
+      <button class="modal-cta">Add to Wishlist</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const thobes = [
+  {
+    eyebrow:"01 · Signature Piece",
+    title:"The Classic",
+    subtitle:"Ivory Belted Thobe",
+    desc:"The foundation of the collection. Ivory simplicity elevated by subtle shoulder embroidery and a refined waist belt — a timeless silhouette that carries the quiet confidence of heritage.",
+    specs:[["Colour","Ivory White"],["Collar","Sherwani Band"],["Detail","Embroidered Shoulders"],["Closure","Belted Waist + Gold Buttons"],["Fabric","Breathable Cotton–Linen Blend"],["Occasion","Everyday · Formal · Prayer"]],
+    bg:"#1C1916",
+    svg:`<svg viewBox="0 0 200 380" fill="none"><path d="M68 44C52 46 24 58 12 88L6 160C4 178 8 196 14 212L24 310C28 340 30 360 32 374H168C170 360 172 340 176 310L186 212C192 196 196 178 194 160L188 88C176 58 148 46 132 44Z" fill="#F7F3EC" stroke="#DDD6C8" stroke-width=".8"/><rect x="82" y="20" width="36" height="28" rx="3" fill="#EDEAE0" stroke="#B8922A" stroke-width=".7"/><line x1="82" y1="30" x2="118" y2="30" stroke="#B8922A" stroke-width=".4" opacity=".7"/><line x1="82" y1="38" x2="118" y2="38" stroke="#B8922A" stroke-width=".3" opacity=".5"/><rect x="94" y="48" width="12" height="126" fill="none" stroke="#D4C4A0" stroke-width=".5"/><path d="M97 55Q100 63 103 55Q100 74 97 85Q100 93 103 85Q100 104 97 115Q100 123 103 115Q100 134 97 145Q100 153 103 145Q100 162 97 170" stroke="#B8922A" stroke-width=".7" fill="none" opacity=".6"/><path d="M58 80Q56 160 57 242Q58 314 60 370" stroke="#C9B070" stroke-width=".6" fill="none" opacity=".4"/><path d="M142 80Q144 160 143 242Q142 314 140 370" stroke="#C9B070" stroke-width=".6" fill="none" opacity=".4"/><rect x="26" y="180" width="148" height="9" rx="2" fill="none" stroke="#C9A84C" stroke-width=".8" opacity=".55"/><rect x="92" y="179" width="16" height="11" rx="2" fill="none" stroke="#C9A84C" stroke-width=".9" opacity=".75"/><circle cx="100" cy="52" r="4" fill="#C9A84C"/><circle cx="100" cy="52" r="2.3" fill="none" stroke="#F0D98A" stroke-width=".6"/><circle cx="100" cy="70" r="4" fill="#C9A84C"/><circle cx="100" cy="70" r="2.3" fill="none" stroke="#F0D98A" stroke-width=".6"/><circle cx="100" cy="88" r="4" fill="#C9A84C"/><circle cx="100" cy="88" r="2.3" fill="none" stroke="#F0D98A" stroke-width=".6"/><circle cx="100" cy="106" r="4" fill="#C9A84C"/><circle cx="100" cy="106" r="2.3" fill="none" stroke="#F0D98A" stroke-width=".6"/><circle cx="100" cy="124" r="4" fill="#C9A84C"/><circle cx="100" cy="124" r="2.3" fill="none" stroke="#F0D98A" stroke-width=".6"/><circle cx="100" cy="142" r="4" fill="#C9A84C"/><circle cx="100" cy="142" r="2.3" fill="none" stroke="#F0D98A" stroke-width=".6"/><path d="M68 44Q78 53 86 63" stroke="#D4C4A0" stroke-width="1.5" fill="none"/><path d="M132 44Q122 53 114 63" stroke="#D4C4A0" stroke-width="1.5" fill="none"/><line x1="32" y1="370" x2="168" y2="370" stroke="#C9A84C" stroke-width=".8" opacity=".5"/></svg>`
+  },
+  {
+    eyebrow:"02 · Bold Statement",
+    title:"Midnight Sovereign",
+    subtitle:"Navy Embroidered Thobe",
+    desc:"Deep midnight navy commands the room. The ornate gold embroidery band running center-front tells of artisan hours and royal courts — sculpted gold buttons and trimmed cuffs complete the authority.",
+    specs:[["Colour","Midnight Navy"],["Collar","Sherwani Band"],["Detail","Gold Ornate Embroidery Band"],["Closure","Gold Metal Buttons"],["Cuffs","Gold-Trimmed"],["Occasion","Weddings · Eid · Formal Events"]],
+    bg:"#0C1120",
+    svg:`<svg viewBox="0 0 200 380" fill="none"><path d="M68 44C52 46 24 58 12 88L6 160C4 178 8 196 14 212L24 310C28 340 30 360 32 374H168C170 360 172 340 176 310L186 212C192 196 196 178 194 160L188 88C176 58 148 46 132 44Z" fill="#1A2340" stroke="#2A3555" stroke-width=".8"/><rect x="82" y="20" width="36" height="28" rx="3" fill="#151C33" stroke="#B8922A" stroke-width=".8"/><line x1="82" y1="30" x2="118" y2="30" stroke="#B8922A" stroke-width=".5" opacity=".8"/><rect x="93" y="48" width="14" height="148" fill="#0F1626" stroke="#B8922A" stroke-width=".7"/><path d="M97 56L100 51L103 56V63L100 68L97 63Z" fill="#C9A84C" opacity=".3" stroke="#C9A84C" stroke-width=".5"/><path d="M97 70L100 65L103 70V77L100 82L97 77Z" fill="#C9A84C" opacity=".3" stroke="#C9A84C" stroke-width=".5"/><path d="M97 84L100 79L103 84V91L100 96L97 91Z" fill="#C9A84C" opacity=".3" stroke="#C9A84C" stroke-width=".5"/><path d="M97 98L100 93L103 98V105L100 110L97 105Z" fill="#C9A84C" opacity=".3" stroke="#C9A84C" stroke-width=".5"/><path d="M97 112L100 107L103 112V119L100 124L97 119Z" fill="#C9A84C" opacity=".3" stroke="#C9A84C" stroke-width=".5"/><path d="M97 126L100 121L103 126V133L100 138L97 133Z" fill="#C9A84C" opacity=".3" stroke="#C9A84C" stroke-width=".5"/><path d="M97 140L100 135L103 140V147L100 152L97 147Z" fill="#C9A84C" opacity=".3" stroke="#C9A84C" stroke-width=".5"/><path d="M68 44L93 48" stroke="#B8922A" stroke-width="1.4"/><path d="M132 44L107 48" stroke="#B8922A" stroke-width="1.4"/><path d="M56 78Q54 160 55 242Q56 314 58 370" stroke="#B8922A" stroke-width=".5" fill="none" opacity=".28"/><path d="M144 78Q146 160 145 242Q144 314 142 370" stroke="#B8922A" stroke-width=".5" fill="none" opacity=".28"/><circle cx="100" cy="52" r="4.5" fill="#C9A84C"/><circle cx="100" cy="52" r="2.8" fill="none" stroke="#F0D98A" stroke-width=".7"/><circle cx="100" cy="52" r="1.2" fill="#F0D98A"/><circle cx="100" cy="72" r="4.5" fill="#C9A84C"/><circle cx="100" cy="72" r="2.8" fill="none" stroke="#F0D98A" stroke-width=".7"/><circle cx="100" cy="92" r="4.5" fill="#C9A84C"/><circle cx="100" cy="92" r="2.8" fill="none" stroke="#F0D98A" stroke-width=".7"/><circle cx="100" cy="112" r="4.5" fill="#C9A84C"/><circle cx="100" cy="112" r="2.8" fill="none" stroke="#F0D98A" stroke-width=".7"/><circle cx="100" cy="132" r="4.5" fill="#C9A84C"/><circle cx="100" cy="132" r="2.8" fill="none" stroke="#F0D98A" stroke-width=".7"/><path d="M12 200Q9 215 12 228" stroke="#B8922A" stroke-width="1.5" fill="none"/><path d="M188 200Q191 215 188 228" stroke="#B8922A" stroke-width="1.5" fill="none"/><line x1="32" y1="370" x2="168" y2="370" stroke="#B8922A" stroke-width="1" opacity=".65"/></svg>`
+  },
+  {
+    eyebrow:"03 · Modern Edit",
+    title:"The Diagonal",
+    subtitle:"Taupe Asymmetric Thobe",
+    desc:"A contemporary reinterpretation of the classic form. The diagonal placket breaks symmetry with purpose — a single asymmetric line that redefines the silhouette for the modern gentleman.",
+    specs:[["Colour","Warm Taupe"],["Collar","Sherwani Band"],["Detail","Asymmetric Diagonal Placket"],["Closure","Angled Fabric Buttons"],["Cut","Contemporary Silhouette"],["Occasion","Casual · Jumuah · Smart-Casual"]],
+    bg:"#18140E",
+    svg:`<svg viewBox="0 0 200 380" fill="none"><path d="M68 44C52 46 24 58 12 88L6 160C4 178 8 196 14 212L24 310C28 340 30 360 32 374H168C170 360 172 340 176 310L186 212C192 196 196 178 194 160L188 88C176 58 148 46 132 44Z" fill="#9E8E7A" stroke="#8A7A68" stroke-width=".8"/><rect x="82" y="20" width="36" height="28" rx="3" fill="#8A7A68" stroke="#5A4E40" stroke-width=".8"/><line x1="82" y1="30" x2="118" y2="30" stroke="#5A4E40" stroke-width=".5" opacity=".7"/><path d="M100 48L68 185V374H100Z" fill="#8A7A66" opacity=".42"/><path d="M100 48L68 185" stroke="#5A4E38" stroke-width="1.7" fill="none"/><line x1="68" y1="185" x2="68" y2="374" stroke="#5A4E38" stroke-width=".9" opacity=".5"/><path d="M100 48Q86 102 74 185Q70 250 68 314Q67 346 68 370" stroke="#C9A84C" stroke-width=".7" fill="none" opacity=".5"/><path d="M142 80Q144 160 143 242Q142 314 140 370" stroke="#C9A84C" stroke-width=".45" fill="none" opacity=".28"/><circle cx="97" cy="62" r="4" fill="#4A3E30"/><circle cx="97" cy="62" r="2.3" fill="none" stroke="#9A8060" stroke-width=".6"/><circle cx="93" cy="82" r="4" fill="#4A3E30"/><circle cx="93" cy="82" r="2.3" fill="none" stroke="#9A8060" stroke-width=".6"/><circle cx="89" cy="102" r="4" fill="#4A3E30"/><circle cx="89" cy="102" r="2.3" fill="none" stroke="#9A8060" stroke-width=".6"/><circle cx="85" cy="122" r="4" fill="#4A3E30"/><circle cx="85" cy="122" r="2.3" fill="none" stroke="#9A8060" stroke-width=".6"/><circle cx="81" cy="142" r="4" fill="#4A3E30"/><circle cx="81" cy="142" r="2.3" fill="none" stroke="#9A8060" stroke-width=".6"/><line x1="32" y1="370" x2="168" y2="370" stroke="#6E5E4A" stroke-width=".9" opacity=".65"/></svg>`
+  },
+  {
+    eyebrow:"04 · Ceremonial",
+    title:"The Ceremonial",
+    subtitle:"Pearl White Heritage Thobe",
+    desc:"Reserved for life's most sacred moments. The hand-stitched chest panel carries patterns passed through generations — pearl buttons catch the light, and the double-hem speaks of unhurried elegance.",
+    specs:[["Colour","Pearl White"],["Collar","Sherwani Band"],["Detail","Full Chest Embroidery Panel"],["Closure","Pearl & Gold Buttons"],["Hem","Double-Stitched Gold Border"],["Occasion","Weddings · Eid Al-Fitr · Hajj"]],
+    bg:"#1A1814",
+    svg:`<svg viewBox="0 0 200 380" fill="none"><path d="M68 44C52 46 24 58 12 88L6 160C4 178 8 196 14 212L24 310C28 340 30 360 32 374H168C170 360 172 340 176 310L186 212C192 196 196 178 194 160L188 88C176 58 148 46 132 44Z" fill="#F9F6F0" stroke="#E4DDD0" stroke-width=".8"/><rect x="82" y="20" width="36" height="28" rx="3" fill="#F0ECE2" stroke="#C9A84C" stroke-width=".7"/><line x1="82" y1="30" x2="118" y2="30" stroke="#C9A84C" stroke-width=".4" opacity=".6"/><line x1="82" y1="38" x2="118" y2="38" stroke="#C9A84C" stroke-width=".3" opacity=".4"/><path d="M70 48H130V126Q100 137 70 126Z" fill="none" stroke="#D4C4A0" stroke-width=".7"/><path d="M72 57Q100 52 128 57" stroke="#C9A84C" stroke-width=".6" fill="none" opacity=".55"/><path d="M72 68Q100 63 128 68" stroke="#C9A84C" stroke-width=".5" fill="none" opacity=".46"/><path d="M74 80Q100 75 126 80" stroke="#C9A84C" stroke-width=".5" fill="none" opacity=".38"/><path d="M76 92Q100 87 124 92" stroke="#C9A84C" stroke-width=".4" fill="none" opacity=".32"/><path d="M78 104Q100 99 122 104" stroke="#C9A84C" stroke-width=".35" fill="none" opacity=".26"/><path d="M80 116Q100 111 120 116" stroke="#C9A84C" stroke-width=".3" fill="none" opacity=".22"/><path d="M58 80Q56 160 57 242Q58 314 60 370" stroke="#C9A84C" stroke-width=".7" fill="none" opacity=".44"/><path d="M142 80Q144 160 143 242Q142 314 140 370" stroke="#C9A84C" stroke-width=".7" fill="none" opacity=".44"/><circle cx="100" cy="55" r="4.5" fill="#F0ECE2" stroke="#C9A84C" stroke-width=".9"/><circle cx="100" cy="55" r="2.5" fill="none" stroke="#D4BA70" stroke-width=".6"/><circle cx="100" cy="77" r="4.5" fill="#F0ECE2" stroke="#C9A84C" stroke-width=".9"/><circle cx="100" cy="77" r="2.5" fill="none" stroke="#D4BA70" stroke-width=".6"/><circle cx="100" cy="99" r="4.5" fill="#F0ECE2" stroke="#C9A84C" stroke-width=".9"/><circle cx="100" cy="99" r="2.5" fill="none" stroke="#D4BA70" stroke-width=".6"/><circle cx="100" cy="121" r="4.5" fill="#F0ECE2" stroke="#C9A84C" stroke-width=".9"/><circle cx="100" cy="121" r="2.5" fill="none" stroke="#D4BA70" stroke-width=".6"/><line x1="32" y1="368" x2="168" y2="368" stroke="#C9A84C" stroke-width=".9" opacity=".58"/><line x1="34" y1="373" x2="166" y2="373" stroke="#C9A84C" stroke-width=".45" opacity=".34"/></svg>`
+  }
+];
+
+function openModal(i) {
+  const t = thobes[i];
+  document.getElementById('modalEyebrow').textContent = t.eyebrow;
+  document.getElementById('modalTitle').textContent = t.title;
+  document.getElementById('modalSubtitle').textContent = t.subtitle;
+  document.getElementById('modalDesc').textContent = t.desc;
+  document.getElementById('modalSpecs').innerHTML = t.specs.map(([k,v]) =>
+    `<div class="spec-row"><span class="spec-k">${k}</span><span class="spec-v">${v}</span></div>`
+  ).join('');
+  const vis = document.getElementById('modalVisual');
+  vis.style.background = t.bg;
+  vis.innerHTML = t.svg;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleBackdropClick(e) {
+  if (e.target === document.getElementById('modal')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key==='Escape') closeModal(); });
+
+document.querySelectorAll('.thobe-card').forEach(card => {
+  card.addEventListener('keydown', e => {
+    if (e.key==='Enter'||e.key===' ') card.click();
+  });
+});
+</script>
+</body>
+</html>
