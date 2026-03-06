@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMMAR — Brand Identity System</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Jost:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E2C97E;
+  --gold-dark: #8B6914;
+  --ink: #0C0B09;
+  --ink-2: #141210;
+  --ink-3: #1E1C18;
+  --cream: #F4EFE4;
+  --cream-dim: #C8BFA8;
+  --muted: #6B6456;
+  --faint: #2A2720;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--ink);
+  color: var(--cream);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ═══════════════════════════════════
+   SECTION WRAPPER
+═══════════════════════════════════ */
+.section { padding: 100px 48px; max-width: 1100px; margin: 0 auto; }
+.section-sm { padding: 70px 48px; max-width: 1100px; margin: 0 auto; }
+.divider { width: 100%; height: 1px; background: var(--faint); }
+
+/* ═══════════════════════════════════
+   NAV
+═══════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 20px 48px;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(12,11,9,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--faint);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 500;
+  letter-spacing: 6px; text-transform: uppercase;
+  color: var(--gold);
+}
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; font-weight: 300;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--cream); }
+
+/* ═══════════════════════════════════
+   HERO
+═══════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 48px 80px;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background: 
+    radial-gradient(ellipse 70% 50% at 50% 40%, rgba(201,168,76,0.08), transparent 65%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201,168,76,0.04), transparent),
+    radial-gradient(ellipse 40% 60% at 80% 20%, rgba(201,168,76,0.04), transparent);
+}
+
+/* Geometric background ornament */
+.hero-ornament {
+  position: absolute;
+  width: 600px; height: 600px;
+  border: 1px solid rgba(201,168,76,0.06);
+  border-radius: 50%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation: rotate-slow 60s linear infinite;
+}
+.hero-ornament::before {
+  content: '';
+  position: absolute; inset: 30px;
+  border: 1px solid rgba(201,168,76,0.04);
+  border-radius: 50%;
+}
+.hero-ornament::after {
+  content: '';
+  position: absolute; inset: 80px;
+  border: 1px solid rgba(201,168,76,0.03);
+  border-radius: 50%;
+}
+@keyframes rotate-slow { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+.hero-eyebrow {
+  font-size: 10px; letter-spacing: 5px; text-transform: uppercase;
+  color: var(--gold); font-weight: 300;
+  margin-bottom: 32px;
+  position: relative;
+  display: flex; align-items: center; gap: 16px;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: ''; width: 40px; height: 1px; background: var(--gold-dark);
+}
+
+.hero-wordmark {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(72px, 14vw, 160px);
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  line-height: 0.9;
+  color: var(--cream);
+  position: relative;
+  margin-bottom: 24px;
+}
+.hero-wordmark span {
+  display: inline-block;
+  animation: fadeUp 0.8s var(--ease) both;
+}
+.hero-wordmark span:nth-child(1) { animation-delay: 0.1s; }
+.hero-wordmark span:nth-child(2) { animation-delay: 0.2s; }
+.hero-wordmark span:nth-child(3) { animation-delay: 0.3s; }
+.hero-wordmark span:nth-child(4) { animation-delay: 0.4s; }
+.hero-wordmark span:nth-child(5) { animation-delay: 0.5s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-arabic {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 300;
+  color: var(--gold); opacity: 0.7;
+  margin-bottom: 20px;
+  direction: rtl;
+}
+
+.hero-meaning {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(16px, 2.5vw, 22px);
+  font-weight: 300; font-style: italic;
+  color: var(--cream-dim);
+  margin-bottom: 48px;
+  max-width: 480px;
+}
+
+.hero-tagline-options {
+  display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+  margin-bottom: 60px;
+}
+.tagline-pill {
+  padding: 10px 22px;
+  border: 1px solid var(--faint);
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--muted); font-weight: 300;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+}
+.tagline-pill:hover, .tagline-pill.active {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: rgba(201,168,76,0.05);
+}
+.tagline-display {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(14px, 2vw, 18px);
+  font-style: italic; color: var(--cream-dim);
+  min-height: 28px;
+  transition: opacity 0.3s;
+}
+
+/* ═══════════════════════════════════
+   NAME ANALYSIS
+═══════════════════════════════════ */
+.name-section { background: var(--ink-2); }
+.name-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-top: 48px;
+}
+.name-card {
+  padding: 40px;
+  background: var(--ink-3);
+  position: relative;
+  overflow: hidden;
+}
+.name-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+}
+.name-card.yours::before { background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+.name-card.alt::before { background: linear-gradient(90deg, transparent, var(--muted), transparent); }
+.name-card.alt.strong::before { background: linear-gradient(90deg, transparent, #8896d8, transparent); }
+
+.nc-label {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 20px; display: block;
+}
+.nc-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px; font-weight: 400;
+  margin-bottom: 6px; line-height: 1;
+}
+.nc-arabic {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; color: var(--gold); opacity: 0.7;
+  margin-bottom: 16px; direction: rtl;
+}
+.nc-meaning {
+  font-size: 13px; font-weight: 300; color: var(--cream-dim);
+  margin-bottom: 20px; line-height: 1.7;
+}
+.nc-verdict {
+  display: inline-block;
+  padding: 5px 14px;
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  font-weight: 400;
+}
+.verdict-yours { background: rgba(201,168,76,0.1); color: var(--gold); border: 1px solid rgba(201,168,76,0.3); }
+.verdict-strong { background: rgba(136,150,216,0.1); color: #8896d8; border: 1px solid rgba(136,150,216,0.3); }
+.verdict-good { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--faint); }
+
+.trademark-note {
+  margin-top: 40px;
+  padding: 24px 32px;
+  border: 1px solid var(--faint);
+  background: rgba(201,168,76,0.03);
+  display: flex; gap: 16px; align-items: flex-start;
+}
+.tn-icon { color: var(--gold); font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+.tn-text { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+.tn-text strong { color: var(--cream-dim); font-weight: 400; }
+
+/* ═══════════════════════════════════
+   LOGO CONCEPTS
+═══════════════════════════════════ */
+.logos-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 300; margin-bottom: 12px;
+}
+.logos-sub {
+  font-size: 13px; font-weight: 300; color: var(--muted);
+  letter-spacing: 1px; margin-bottom: 60px;
+}
+
+.logo-concepts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.logo-concept {
+  background: var(--ink-3);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease);
+}
+.logo-concept:hover { transform: translateY(-3px); }
+
+.logo-preview {
+  height: 260px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Logo 1: Pure wordmark */
+.logo-1-preview {
+  background: var(--ink);
+}
+.logo-1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px; font-weight: 300;
+  letter-spacing: 0.35em;
+  color: var(--cream);
+  text-transform: uppercase;
+  position: relative;
+}
+.logo-1::after {
+  content: '';
+  position: absolute;
+  bottom: -8px; left: 0; right: 0;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* Logo 2: Emblem with geometric ornament */
+.logo-2-preview {
+  background: var(--cream);
+  flex-direction: column; gap: 10px;
+}
+.logo-2-emblem {
+  position: relative;
+  width: 80px; height: 80px;
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-2-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 600;
+  letter-spacing: 0.3em;
+  color: var(--ink);
+  text-transform: uppercase;
+}
+.logo-2-sub {
+  font-family: 'Jost', sans-serif;
+  font-size: 9px; font-weight: 300;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--ink); opacity: 0.4;
+}
+
+/* Logo 3: Arabic + Latin stacked */
+.logo-3-preview {
+  background: var(--ink-2);
+  flex-direction: column; gap: 4px;
+}
+.logo-3-arabic {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; font-weight: 300;
+  color: var(--gold);
+  direction: rtl; letter-spacing: 2px;
+}
+.logo-3-divider {
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.logo-3-latin {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px; font-weight: 300;
+  letter-spacing: 0.5em;
+  color: var(--cream);
+  text-transform: uppercase;
+}
+
+.logo-info {
+  padding: 24px 28px;
+  border-top: 1px solid var(--faint);
+}
+.li-name {
+  font-size: 13px; font-weight: 500; color: var(--cream);
+  margin-bottom: 6px; letter-spacing: 0.5px;
+}
+.li-desc {
+  font-size: 12px; font-weight: 300; color: var(--muted);
+  line-height: 1.6;
+}
+.li-tag {
+  display: inline-block; margin-top: 10px;
+  padding: 4px 10px;
+  font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+  border: 1px solid var(--faint); color: var(--muted);
+}
+
+/* ═══════════════════════════════════
+   COLOR SYSTEM
+═══════════════════════════════════ */
+.color-section { background: var(--ink-2); }
+.color-system {
+  margin-top: 48px;
+}
+.color-role {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 20px; display: block;
+}
+.color-row {
+  display: flex; gap: 2px; margin-bottom: 2px;
+}
+.color-swatch {
+  flex: 1; height: 90px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: flex 0.4s var(--ease);
+}
+.color-swatch:hover { flex: 2.5; }
+.color-swatch:hover .swatch-info { opacity: 1; transform: translateY(0); }
+.swatch-info {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 10px 14px;
+  background: rgba(0,0,0,0.5);
+  opacity: 0; transform: translateY(4px);
+  transition: all 0.3s var(--ease);
+}
+.swatch-name { font-size: 10px; letter-spacing: 1px; color: rgba(255,255,255,0.8); display: block; }
+.swatch-hex { font-size: 10px; color: rgba(255,255,255,0.5); display: block; font-family: monospace; }
+
+/* Primary palette */
+.s-gold { background: #C9A84C; }
+.s-gold-l { background: #E2C97E; }
+.s-gold-d { background: #8B6914; }
+.s-ink { background: #0C0B09; border: 1px solid #1e1e1e; }
+.s-ink2 { background: #141210; }
+.s-cream { background: #F4EFE4; }
+.s-cream2 { background: #C8BFA8; }
+/* Accent palette */
+.s-navy { background: #12213A; }
+.s-sage { background: #3D5145; }
+.s-stone { background: #8C7B65; }
+.s-taupe { background: #C4B49A; }
+
+.palette-usage {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 2px; margin-top: 2px;
+}
+.usage-card {
+  padding: 24px 28px;
+  background: var(--ink-3);
+}
+.uc-title {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 12px; display: block;
+}
+.uc-dots {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.uc-dot {
+  width: 20px; height: 20px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.uc-body {
+  font-size: 12px; font-weight: 300; color: var(--muted);
+  margin-top: 12px; line-height: 1.6;
+}
+
+/* ═══════════════════════════════════
+   TYPOGRAPHY
+═══════════════════════════════════ */
+.type-system {
+  margin-top: 48px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+}
+.type-card {
+  background: var(--ink-3);
+  padding: 40px;
+}
+.type-label {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 24px; display: block;
+}
+.type-display {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px; font-weight: 300;
+  line-height: 1; color: var(--cream);
+  margin-bottom: 16px;
+}
+.type-display-italic {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px; font-weight: 300; font-style: italic;
+  line-height: 1; color: var(--gold);
+  margin-bottom: 16px;
+}
+.type-body-ex {
+  font-family: 'Jost', sans-serif;
+  font-size: 14px; font-weight: 300;
+  color: var(--cream-dim); line-height: 1.7;
+  margin-bottom: 16px;
+}
+.type-caps {
+  font-family: 'Jost', sans-serif;
+  font-size: 10px; font-weight: 400; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--muted);
+}
+.type-meta {
+  font-size: 11px; color: var(--muted); margin-top: 20px;
+  padding-top: 20px; border-top: 1px solid var(--faint);
+  font-weight: 300;
+}
+.type-meta strong { color: var(--cream-dim); font-weight: 400; }
+
+/* ═══════════════════════════════════
+   BRAND IN USE — MOCKUP
+═══════════════════════════════════ */
+.mockup-section {}
+.mockup-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  margin-top: 48px;
+}
+.mockup-card {
+  position: relative; overflow: hidden;
+  background: var(--ink-3);
+}
+
+/* Hang tag mockup */
+.hangtag {
+  padding: 48px;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 340px;
+}
+.hangtag-inner {
+  width: 160px;
+  background: var(--cream);
+  padding: 28px 20px 24px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.hangtag-hole {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--ink);
+  margin: 0 auto 20px;
+}
+.hangtag-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; font-weight: 400; letter-spacing: 0.4em;
+  color: var(--ink); text-align: center; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.hangtag-line { width: 40px; height: 1px; background: var(--gold); margin: 0 auto 10px; }
+.hangtag-sub {
+  font-size: 7px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--ink); opacity: 0.4; text-align: center;
+}
+.hangtag-arabic {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px; color: var(--gold-dark);
+  text-align: center; margin-top: 14px; direction: rtl;
+}
+
+/* Label mockup */
+.label-card {
+  padding: 48px;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 340px;
+  background: var(--ink);
+}
+.woven-label {
+  background: #1a1612;
+  border: 1px solid #2a2520;
+  padding: 18px 28px;
+  position: relative;
+}
+.wl-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 400; letter-spacing: 0.5em;
+  color: var(--gold); text-transform: uppercase;
+  text-align: center; margin-bottom: 6px;
+}
+.wl-line { width: 100%; height: 1px; background: var(--faint); margin: 8px 0; }
+.wl-sub {
+  font-size: 8px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--muted); text-align: center; font-weight: 300;
+}
+
+/* Business card mockup */
+.bcard-card {
+  padding: 48px;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 340px;
+}
+.bcard {
+  width: 280px;
+  background: var(--ink);
+  border: 1px solid #2a2520;
+  padding: 32px 28px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+.bcard::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.bcard-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 24px; font-weight: 300; letter-spacing: 0.5em;
+  color: var(--cream); text-transform: uppercase; margin-bottom: 4px;
+}
+.bcard-arabic {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 13px; color: var(--gold); opacity: 0.6;
+  direction: rtl; margin-bottom: 24px;
+}
+.bcard-divider { width: 30px; height: 1px; background: var(--gold-dark); margin-bottom: 20px; }
+.bcard-name { font-size: 12px; color: var(--cream); margin-bottom: 4px; font-weight: 400; }
+.bcard-title { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); font-weight: 300; margin-bottom: 16px; }
+.bcard-contact { font-size: 10px; color: var(--muted); font-weight: 300; line-height: 1.8; }
+
+/* Packaging mockup */
+.pkg-card {
+  padding: 48px;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 340px;
+  background: #0a0905;
+}
+.pkg-box {
+  width: 180px; height: 220px;
+  background: var(--cream);
+  position: relative;
+  box-shadow: -12px 12px 40px rgba(0,0,0,0.8), 12px -6px 30px rgba(0,0,0,0.4);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 8px;
+}
+.pkg-box::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--gold);
+}
+.pkg-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 400; letter-spacing: 0.4em;
+  color: var(--ink); text-transform: uppercase;
+}
+.pkg-line { width: 50px; height: 1px; background: var(--gold-dark); }
+.pkg-arabic {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14px; color: var(--gold-dark);
+  direction: rtl;
+}
+.pkg-sub {
+  font-size: 7px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--ink); opacity: 0.3;
+}
+
+.mockup-label {
+  position: absolute; bottom: 16px; left: 20px;
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ═══════════════════════════════════
+   TAGLINE SECTION
+═══════════════════════════════════ */
+.tagline-section {
+  background: var(--ink-2);
+  text-align: center;
+}
+.taglines-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; margin-top: 48px;
+}
+.tg-card {
+  background: var(--ink-3); padding: 36px 28px;
+  position: relative;
+}
+.tg-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 11px; letter-spacing: 3px; color: var(--faint);
+  display: block; margin-bottom: 20px;
+}
+.tg-line {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 300; font-style: italic;
+  color: var(--cream); line-height: 1.3; margin-bottom: 12px;
+}
+.tg-sub {
+  font-size: 11px; font-weight: 300; color: var(--muted); letter-spacing: 0.5px;
+}
+.tg-star { color: var(--gold); font-size: 10px; }
+
+/* ═══════════════════════════════════
+   FOOTER CTA
+═══════════════════════════════════ */
+.footer-cta {
+  padding: 100px 48px;
+  text-align: center;
+  position: relative; overflow: hidden;
+}
+.footer-cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(201,168,76,0.06), transparent);
+}
+.fc-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 5vw, 60px);
+  font-weight: 300; line-height: 1.1;
+  margin-bottom: 24px; position: relative;
+}
+.fc-title em { font-style: italic; color: var(--gold); }
+.fc-sub {
+  font-size: 14px; font-weight: 300; color: var(--muted);
+  max-width: 480px; margin: 0 auto 48px; line-height: 1.7;
+}
+.fc-steps {
+  display: flex; gap: 0; max-width: 700px; margin: 0 auto;
+}
+.fc-step {
+  flex: 1; padding: 28px 20px;
+  border-top: 1px solid var(--faint);
+  position: relative;
+}
+.fc-step::after {
+  content: '→';
+  position: absolute; top: 50%; right: -6px;
+  transform: translateY(-50%);
+  color: var(--faint); font-size: 12px;
+}
+.fc-step:last-child::after { display: none; }
+.step-n {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; color: var(--gold); opacity: 0.4;
+  display: block; margin-bottom: 8px;
+}
+.step-t { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--cream-dim); font-weight: 400; display: block; margin-bottom: 6px; }
+.step-d { font-size: 11px; font-weight: 300; color: var(--muted); }
+
+/* ═══════════════════════════════════
+   UTILS
+═══════════════════════════════════ */
+.section-eyebrow {
+  font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold); display: flex; align-items: center; gap: 14px;
+  margin-bottom: 20px;
+}
+.section-eyebrow::before {
+  content: ''; width: 24px; height: 1px; background: var(--gold-dark);
+}
+.section-h {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 300; margin-bottom: 12px;
+}
+.section-sub {
+  font-size: 13px; font-weight: 300; color: var(--muted);
+  letter-spacing: 0.5px; margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .section, .section-sm { padding: 70px 24px; }
+  .name-grid, .logo-concepts, .type-system, .mockup-grid, .taglines-grid, .palette-usage { grid-template-columns: 1fr; }
+  .color-row { flex-wrap: wrap; }
+  .color-swatch { min-width: 80px; height: 70px; }
+  .hero-wordmark { letter-spacing: 0.15em; }
+  .fc-steps { flex-direction: column; }
+  .fc-step::after { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Ammar</div>
+  <div class="nav-links">
+    <a href="#names">Names</a>
+    <a href="#logos">Logos</a>
+    <a href="#colors">Colors</a>
+    <a href="#typography">Type</a>
+    <a href="#mockups">Mockups</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ornament"></div>
+
+  <div class="hero-eyebrow">Brand Identity System</div>
+
+  <div class="hero-wordmark">
+    <span>A</span><span>M</span><span>M</span><span>A</span><span>R</span>
+  </div>
+
+  <div class="hero-arabic">عمّار</div>
+
+  <p class="hero-meaning">"One who builds. One who brings life to a place.<br>Long-lived, pious, one whose presence brings joy."</p>
+
+  <div class="hero-tagline-options">
+    <div class="tagline-pill active" onclick="setTagline(this, 'Worn by those who build.')">Minimal</div>
+    <div class="tagline-pill" onclick="setTagline(this, 'Refined for every occasion. Rooted in faith.')">Cultural</div>
+    <div class="tagline-pill" onclick="setTagline(this, 'Where heritage meets the modern man.')">Heritage</div>
+    <div class="tagline-pill" onclick="setTagline(this, 'Elevated Islamic menswear.')">Direct</div>
+  </div>
+  <div class="tagline-display" id="tagline-display">Worn by those who build.</div>
+</section>
+
+<!-- NAME ANALYSIS -->
+<div class="divider"></div>
+<section class="section name-section" id="names">
+  <div class="section-eyebrow">Name Strategy</div>
+  <h2 class="section-h">Your Name vs. Alternatives</h2>
+  <p class="section-sub">AMMAR is genuinely strong — here's why, plus two alternatives if you want options.</p>
+
+  <div class="name-grid">
+
+    <div class="name-card yours">
+      <span class="nc-label">Your Name · Recommended</span>
+      <div class="nc-name" style="color: var(--gold);">AMMAR</div>
+      <div class="nc-arabic">عمّار</div>
+      <div class="nc-meaning">
+        Means <em>"builder, one who brings life to a place, long-lived, pious."</em> Rooted in the Quran (root ʿ-m-r) and carried by Ammar ibn Yasir — one of the most revered companions of the Prophet ﷺ. The name is personal, meaningful, and memorable in both Arabic and English markets. No known major clothing brand owns this trademark in Class 25 based on current searches.
+      </div>
+      <span class="nc-verdict verdict-yours">✓ Keep This Name</span>
+    </div>
+
+    <div class="name-card alt strong">
+      <span class="nc-label">Alternative 01 · Very Strong</span>
+      <div class="nc-name" style="color: #8896d8;">IMAARA</div>
+      <div class="nc-arabic">عِمَارة</div>
+      <div class="nc-meaning">
+        From the same Arabic root as AMMAR — means <em>"architecture, construction, civilisation."</em> Feminine in sound, but carries gravitas. Works exceptionally well as a fashion brand name globally — distinct, searchable, and easy to pronounce. Likely clear in Class 25. Has a luxury fashion house feel similar to Maison or Atelier names.
+      </div>
+      <span class="nc-verdict verdict-strong">◆ Strong Alternative</span>
+    </div>
+
+    <div class="name-card alt">
+      <span class="nc-label">Alternative 02 · Distinctive</span>
+      <div class="nc-name" style="color: var(--cream-dim);">NASEEM</div>
+      <div class="nc-arabic">نسيم</div>
+      <div class="nc-meaning">
+        Arabic for <em>"gentle breeze."</em> Beautiful phonetics, easy to say globally, and evokes lightness and elegance — perfect for breathable premium fabric. Less directly tied to Islamic history but universally understood across Muslim cultures. Searchable, brandable, and very clean as a wordmark.
+      </div>
+      <span class="nc-verdict verdict-good">○ Good Alternative</span>
+    </div>
+
+    <div class="name-card alt">
+      <span class="nc-label">Alternative 03 · Heritage</span>
+      <div class="nc-name" style="color: #c87850;">QALAM</div>
+      <div class="nc-arabic">قلم</div>
+      <div class="nc-meaning">
+        Arabic for <em>"the pen"</em> — the first word revealed to the Prophet ﷺ. Highly symbolic and deeply rooted in Islamic culture. Strong brand story: a brand that writes its own chapter of Islamic fashion. Unusual in fashion, which makes it memorable. Risk: less intuitive connection to clothing for non-Muslims.
+      </div>
+      <span class="nc-verdict verdict-good">○ High Concept</span>
+    </div>
+
+  </div>
+
+  <div class="trademark-note">
+    <div class="tn-icon">⚠</div>
+    <div class="tn-text">
+      <strong>Important:</strong> This is not legal advice. Before launching, always run a formal search on the USPTO TESS database (tmsearch.uspto.gov) for Class 25 (clothing) specifically. Even if AMMAR isn't registered, check for phonetically similar names too. A trademark attorney can do this for ~$200–400 and is worth it before you invest in production. As a personal name used as a brand, AMMAR has a strong legal basis for registration.
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS -->
+<div class="divider"></div>
+<section class="section" id="logos">
+  <div class="section-eyebrow">Visual Identity</div>
+  <h2 class="logos-title">Logo Concept Directions</h2>
+  <p class="logos-sub">Three distinct approaches — each communicates a different personality</p>
+
+  <div class="logo-concepts">
+
+    <!-- Concept 1: Pure Wordmark -->
+    <div class="logo-concept">
+      <div class="logo-preview logo-1-preview">
+        <div style="text-align:center;">
+          <div class="logo-1">AMMAR</div>
+          <div style="font-family:'Jost',sans-serif;font-size:8px;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-top:18px;">ISLAMIC MENSWEAR</div>
+        </div>
+      </div>
+      <div class="logo-info">
+        <div class="li-name">01 — The Refined Wordmark</div>
+        <div class="li-desc">Pure typography. Cormorant Garamond in wide tracking with a fine gold underline. Timeless, scalable, and confident. Works on everything from labels to billboards.</div>
+        <span class="li-tag">Recommended for Launch</span>
+      </div>
+    </div>
+
+    <!-- Concept 2: Monogram emblem on light -->
+    <div class="logo-concept">
+      <div class="logo-preview logo-2-preview">
+        <div style="text-align:center;">
+          <!-- Geometric octagonal emblem -->
+          <svg width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-bottom:12px;">
+            <!-- Outer octagon -->
+            <path d="M45 4 L76 18 L86 50 L72 80 L40 86 L10 72 L4 42 L18 12 Z" stroke="#0C0B09" stroke-width="1.5" fill="none"/>
+            <!-- Inner octagon -->
+            <path d="M45 14 L68 24 L76 48 L64 70 L42 76 L20 66 L14 44 L26 22 Z" stroke="#0C0B09" stroke-width="0.8" fill="none" opacity="0.3"/>
+            <!-- A monogram -->
+            <text x="45" y="52" font-family="Cormorant Garamond, serif" font-size="28" font-weight="400" fill="#0C0B09" text-anchor="middle" letter-spacing="2">A</text>
+            <!-- Gold accent dots -->
+            <circle cx="45" cy="8" r="2.5" fill="#8B6914"/>
+            <circle cx="45" cy="82" r="2.5" fill="#8B6914"/>
+          </svg>
+          <div class="logo-2-text">AMMAR</div>
+          <div class="logo-2-sub">Islamic Menswear</div>
+        </div>
+      </div>
+      <div class="logo-info">
+        <div class="li-name">02 — The Emblem Mark</div>
+        <div class="li-desc">Geometric octagon (echoing Islamic art) housing the 'A' monogram. Strong on packaging, wax seals, embossing. Cream background version for premium feel.</div>
+        <span class="li-tag">Best for Packaging</span>
+      </div>
+    </div>
+
+    <!-- Concept 3: Arabic + Latin bilingual -->
+    <div class="logo-concept">
+      <div class="logo-preview logo-3-preview">
+        <div style="text-align:center;">
+          <div class="logo-3-arabic">عمّار</div>
+          <div class="logo-3-divider" style="margin:12px auto;"></div>
+          <div class="logo-3-latin">AMMAR</div>
+        </div>
+      </div>
+      <div class="logo-info">
+        <div class="li-name">03 — The Bilingual Mark</div>
+        <div class="li-desc">Arabic script above, Latin below — separated by a gold divider. Deeply rooted in culture, instantly communicates Islamic identity. Unique in the market.</div>
+        <span class="li-tag">Most Distinctive</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- COLORS -->
+<div class="divider"></div>
+<section class="section color-section" id="colors">
+  <div class="section-eyebrow">Color System</div>
+  <h2 class="section-h">Palette & Usage</h2>
+  <p class="section-sub">Built around warm gold, deep ink, and pure cream — with seasonal accent options</p>
+
+  <div class="color-system">
+    <span class="color-role">Core Palette — Used on all products and touchpoints</span>
+    <div class="color-row">
+      <div class="color-swatch s-gold">
+        <div class="swatch-info"><span class="swatch-name">Ammar Gold</span><span class="swatch-hex">#C9A84C</span></div>
+      </div>
+      <div class="color-swatch s-gold-l">
+        <div class="swatch-info"><span class="swatch-name">Gold Light</span><span class="swatch-hex">#E2C97E</span></div>
+      </div>
+      <div class="color-swatch s-gold-d">
+        <div class="swatch-info"><span class="swatch-name">Gold Deep</span><span class="swatch-hex">#8B6914</span></div>
+      </div>
+      <div class="color-swatch s-ink">
+        <div class="swatch-info"><span class="swatch-name">Ammar Ink</span><span class="swatch-hex">#0C0B09</span></div>
+      </div>
+      <div class="color-swatch s-cream">
+        <div class="swatch-info"><span class="swatch-name">Ammar Cream</span><span class="swatch-hex">#F4EFE4</span></div>
+      </div>
+      <div class="color-swatch s-cream2">
+        <div class="swatch-info"><span class="swatch-name">Cream Muted</span><span class="swatch-hex">#C8BFA8</span></div>
+      </div>
+    </div>
+
+    <span class="color-role" style="margin-top:24px;">Seasonal Accents — Used in limited collections</span>
+    <div class="color-row">
+      <div class="color-swatch s-navy">
+        <div class="swatch-info"><span class="swatch-name">Royal Navy</span><span class="swatch-hex">#12213A</span></div>
+      </div>
+      <div class="color-swatch s-sage">
+        <div class="swatch-info"><span class="swatch-name">Sage</span><span class="swatch-hex">#3D5145</span></div>
+      </div>
+      <div class="color-swatch s-stone">
+        <div class="swatch-info"><span class="swatch-name">Stone</span><span class="swatch-hex">#8C7B65</span></div>
+      </div>
+      <div class="color-swatch s-taupe">
+        <div class="swatch-info"><span class="swatch-name">Warm Taupe</span><span class="swatch-hex">#C4B49A</span></div>
+      </div>
+    </div>
+
+    <div class="palette-usage">
+      <div class="usage-card">
+        <span class="uc-title">Dark Mode (Primary Brand)</span>
+        <div class="uc-dots">
+          <div class="uc-dot" style="background:#0C0B09;border:1px solid #2a2720;"></div>
+          <div class="uc-dot" style="background:#C9A84C;"></div>
+          <div class="uc-dot" style="background:#F4EFE4;"></div>
+        </div>
+        <div class="uc-body">Ink background, gold accents, cream text. Used on website hero, packaging, advertising. Feels premium and confident.</div>
+      </div>
+      <div class="usage-card">
+        <span class="uc-title">Light Mode (Editorial)</span>
+        <div class="uc-dots">
+          <div class="uc-dot" style="background:#F4EFE4;border:1px solid #ddd;"></div>
+          <div class="uc-dot" style="background:#0C0B09;"></div>
+          <div class="uc-dot" style="background:#8B6914;"></div>
+        </div>
+        <div class="uc-body">Cream background, ink type, deep gold accents. Used on hangtags, lookbooks, product pages. Feels editorial and refined.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<div class="divider"></div>
+<section class="section" id="typography">
+  <div class="section-eyebrow">Typography</div>
+  <h2 class="section-h">Type System</h2>
+  <p class="section-sub">Two typefaces only — restraint creates luxury</p>
+
+  <div class="type-system">
+    <div class="type-card">
+      <span class="type-label">Display & Headlines — Cormorant Garamond</span>
+      <div class="type-display">The Art of<br>the Thobe.</div>
+      <div class="type-display-italic">Refined for every man.</div>
+      <div class="type-meta"><strong>Use for:</strong> brand name, headlines, taglines, product names, pull quotes. Always set loosely tracked. Italics for elegance moments.</div>
+    </div>
+    <div class="type-card">
+      <span class="type-label">Body & UI — Jost</span>
+      <div class="type-body-ex">AMMAR is built for the style-conscious Muslim man who refuses to choose between faith and fashion. Each piece is designed to move from morning prayer to evening gathering without compromise.</div>
+      <div class="type-caps">Free shipping on orders over $80 · Handcrafted in limited runs</div>
+      <div class="type-meta"><strong>Use for:</strong> product descriptions, website body, labels, size guides, marketing copy. Weight 300 for body, 500 for emphasis. Always uppercase for navigation.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MOCKUPS -->
+<div class="divider"></div>
+<section class="section" id="mockups">
+  <div class="section-eyebrow">Brand in Use</div>
+  <h2 class="section-h">Touchpoint Mockups</h2>
+  <p class="section-sub">How AMMAR looks across real brand touchpoints</p>
+
+  <div class="mockup-grid">
+
+    <div class="mockup-card">
+      <div class="hangtag">
+        <div class="hangtag-inner">
+          <div class="hangtag-hole"></div>
+          <div class="hangtag-brand">AMMAR</div>
+          <div class="hangtag-line"></div>
+          <div class="hangtag-sub">Islamic Menswear</div>
+          <div class="hangtag-arabic">عمّار</div>
+          <div style="margin-top:16px;border-top:1px solid #ddd;padding-top:12px;">
+            <div style="font-size:8px;color:#888;text-align:center;font-family:'Jost',sans-serif;letter-spacing:1px;">100% Premium Cotton<br>Handcrafted · Limited Run</div>
+          </div>
+        </div>
+      </div>
+      <div class="mockup-label">Hang Tag</div>
+    </div>
+
+    <div class="mockup-card">
+      <div class="label-card">
+        <div>
+          <div class="woven-label">
+            <div class="wl-brand">AMMAR</div>
+            <div class="wl-line"></div>
+            <div class="wl-sub">Islamic Menswear · Since 2026</div>
+          </div>
+          <div style="margin-top:20px;text-align:center;font-size:9px;letter-spacing:2px;color:var(--muted);font-family:'Jost',sans-serif;text-transform:uppercase;">Woven Care Label</div>
+        </div>
+      </div>
+      <div class="mockup-label">Garment Label</div>
+    </div>
+
+    <div class="mockup-card">
+      <div class="bcard-card">
+        <div class="bcard">
+          <div class="bcard-logo">AMMAR</div>
+          <div class="bcard-arabic">عمّار</div>
+          <div class="bcard-divider"></div>
+          <div class="bcard-name">Ammar Al-Hussaini</div>
+          <div class="bcard-title">Founder & Creative Director</div>
+          <div class="bcard-contact">
+            ammar@ammarcollection.com<br>
+            ammarcollection.com<br>
+            @ammarmenswear
+          </div>
+        </div>
+      </div>
+      <div class="mockup-label">Business Card</div>
+    </div>
+
+    <div class="mockup-card">
+      <div class="pkg-card">
+        <div class="pkg-box">
+          <div class="pkg-brand">AMMAR</div>
+          <div class="pkg-line"></div>
+          <div class="pkg-arabic">عمّار</div>
+          <div class="pkg-sub">Islamic Menswear</div>
+        </div>
+      </div>
+      <div class="mockup-label">Shipping Box</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TAGLINES -->
+<div class="divider"></div>
+<section class="section-sm tagline-section" id="taglines">
+  <div class="section-eyebrow" style="justify-content:center;">Brand Voice</div>
+  <h2 class="section-h" style="text-align:center;">Tagline Options</h2>
+  <p class="section-sub" style="text-align:center;margin-bottom:0;">Pick the one that feels like you — or we combine elements</p>
+
+  <div class="taglines-grid">
+    <div class="tg-card">
+      <span class="tg-number">01</span>
+      <div class="tg-line">"Worn by those who build."</div>
+      <div class="tg-sub">Nods to the meaning of AMMAR. Confident, masculine. Appeals to the professional Muslim man.</div>
+      <div class="tg-star" style="margin-top:14px;">★ Recommended</div>
+    </div>
+    <div class="tg-card">
+      <span class="tg-number">02</span>
+      <div class="tg-line">"Where heritage meets the modern man."</div>
+      <div class="tg-sub">Positions the hybrid Executive × Royal direction perfectly. Broader appeal across all ages.</div>
+    </div>
+    <div class="tg-card">
+      <span class="tg-number">03</span>
+      <div class="tg-line">"Refined for every occasion."</div>
+      <div class="tg-sub">Simple and product-focused. Works well for marketing copy but less memorable as a brand line.</div>
+    </div>
+    <div class="tg-card">
+      <span class="tg-number">04</span>
+      <div class="tg-line">"Dress with intention."</div>
+      <div class="tg-sub">Speaks to the faith-driven customer. Intention (niyyah) resonates deeply in Islamic culture.</div>
+      <div class="tg-star" style="margin-top:14px;">★ Culturally Strong</div>
+    </div>
+    <div class="tg-card">
+      <span class="tg-number">05</span>
+      <div class="tg-line">"Built for the masjid. Made for the world."</div>
+      <div class="tg-sub">Direct, confident, and captures the all-occasion brief perfectly. Strong for social media.</div>
+    </div>
+    <div class="tg-card">
+      <span class="tg-number">06</span>
+      <div class="tg-line">"The thobe, elevated."</div>
+      <div class="tg-sub">Clear category positioning. Instantly tells the customer what you do and how you do it differently.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<div class="divider"></div>
+<section class="footer-cta">
+  <h2 class="fc-title">Your Brand is<br><em>Taking Shape</em></h2>
+  <p class="fc-sub">You now have a name strategy, three logo directions, a full color system, typography, and mockups. Here's what comes next.</p>
+  <div class="fc-steps">
+    <div class="fc-step">
+      <span class="step-n">01</span>
+      <span class="step-t">Pick Your Logo</span>
+      <span class="step-d">Choose concept 1, 2, or 3 — or mix elements</span>
+    </div>
+    <div class="fc-step">
+      <span class="step-n">02</span>
+      <span class="step-t">Lock the Tagline</span>
+      <span class="step-d">Choose or refine from the 6 options</span>
+    </div>
+    <div class="fc-step">
+      <span class="step-n">03</span>
+      <span class="step-t">Design First Thobe</span>
+      <span class="step-d">Apply Executive × Royal direction to garment</span>
+    </div>
+    <div class="fc-step">
+      <span class="step-n">04</span>
+      <span class="step-t">Build the Store</span>
+      <span class="step-d">Website, Instagram, launch campaign</span>
+    </div>
+  </div>
+</section>
+
+<script>
+function setTagline(el, text) {
+  document.querySelectorAll('.tagline-pill').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  const display = document.getElementById('tagline-display');
+  display.style.opacity = '0';
+  setTimeout(() => {
+    display.textContent = text;
+    display.style.opacity = '1';
+  }, 200);
+}
+</script>
+
+</body>
+</html>
